@@ -163,6 +163,7 @@ public class StackView: UIView {
     public func addSubview(view: UIView, withEdgeInsets edgeInsets: UIEdgeInsets) {
         // Remove the constraints on the view.
         super.addSubview(view)
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.viewBoxes.append(ViewBox(view: view, edgeInsets: edgeInsets))
         self.removeConstraints(self.stackConstraints)
         self.stackConstraints.removeAll(keepCapacity: true)

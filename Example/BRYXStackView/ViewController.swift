@@ -27,6 +27,7 @@ class ViewController: UIViewController {
                 self.addLabel(text: "as well", toStackView: newStack,  backgroundColor: UIColor.yellowColor())
             })
             self.stackView.addSubview(newStack, withEdgeInsets: UIEdgeInsets(top: 10.0, left: 25.0, bottom: 10.0, right: 25.0))
+            self.addLabel(text: "And now we're right back in the top stack.", toStackView: self.stackView,  backgroundColor: UIColor.groupTableViewBackgroundColor())
         })
     }
     
@@ -35,7 +36,6 @@ class ViewController: UIViewController {
         label.text = text
         label.numberOfLines = 0
         label.backgroundColor = backgroundColor
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
         stackView.addSubview(label, withEdgeInsets: UIEdgeInsets(top: 10.0, left: 15.0, bottom: 10.0, right: 15.0))
     }
     
