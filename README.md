@@ -13,6 +13,34 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ![Screenshot](Screenshot.png)
 
+### Code
+
+Any time you add a subview to a StackView, it's automatically re-positioned within the stack.
+
+There are four functions exposed by StackView.
+
+```swift
+func addSubview(view: UIView)
+func addSubview(view: UIView, withEdgeInsets edgeInsets: UIEdgeInsets)
+func removeAllSubviews()
+func batchUpdates(updates: () -> (), completion: (() -> ())? = nil)
+```
+
+If you're adding many subviews, it's recommended that you add them
+within a call to `batchUpdates()`
+
+```swift
+self.stackView.batchUpdates({
+    self.stackView.addSubview(UIView())
+    self.stackView.addSubview(UIView())
+    self.stackView.addSubview(UIView(), withEdgeInsets: UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 15.0))
+    self.stackView.addSubview(UIView())
+})
+```
+
+This will ensure the constraints are only created once, and you'll get much
+better performance.
+
 ## Requirements
 
 iOS 8, if installing through CocoaPods, otherwise iOS 7.
