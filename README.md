@@ -25,6 +25,7 @@ pod "BRYXStackView"
 ## Authors
 
 Harlan Haskins, harlan@bryx.com
+
 Adam Binsz, adam.binsz@bryx.com
 
 ## License
