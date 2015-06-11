@@ -11,6 +11,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
+iOS 8, if installing through CocoaPods, otherwise iOS 7.
+
 ## Installation
 
 BRYXStackView is available through [CocoaPods](http://cocoapods.org). To install
@@ -20,9 +22,10 @@ it, simply add the following line to your Podfile:
 pod "BRYXStackView"
 ```
 
-## Author
+## Authors
 
-Harlan Haskins, harlan@harlanhaskins.com
+Harlan Haskins, harlan@bryx.com
+Adam Binsz, adam.binsz@bryx.com
 
 ## License
 
