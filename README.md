@@ -9,6 +9,10 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+### Screenshot
+
+![Screenshot](Screenshot.png)
+
 ## Requirements
 
 iOS 8, if installing through CocoaPods, otherwise iOS 7.
