@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BRYXStackView"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "A simplistic implementation of iOS 9's UIStackView, on iOS 7."
   s.homepage         = "https://github.com/bryx-inc/BRYXStackView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
