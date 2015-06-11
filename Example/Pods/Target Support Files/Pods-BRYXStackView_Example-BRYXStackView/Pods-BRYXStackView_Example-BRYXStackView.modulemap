@@ -1,0 +1,6 @@
+framework module BRYXStackView {
+  umbrella header "Pods-BRYXStackView_Example-BRYXStackView-umbrella.h"
+
+  export *
+  module * { export * }
+}

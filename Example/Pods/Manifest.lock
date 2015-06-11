@@ -1,0 +1,14 @@
+PODS:
+  - BRYXStackView (0.1.0)
+
+DEPENDENCIES:
+  - BRYXStackView (from `../`)
+
+EXTERNAL SOURCES:
+  BRYXStackView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BRYXStackView: 54894dc8c4fe27c1598a536114719a6cb89e7e8d
+
+COCOAPODS: 0.37.2
