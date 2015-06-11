@@ -10,18 +10,12 @@
 Pod::Spec.new do |s|
   s.name             = "BRYXStackView"
   s.version          = "0.1.0"
-  s.summary          = "A short description of BRYXStackView."
-  s.description      = <<-DESC
-                       An optional longer description of BRYXStackView
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/BRYXStackView"
+  s.summary          = "A simplistic implementation of iOS 9's UIStackView, on iOS 7."
+  s.homepage         = "https://github.com/bryx-inc/BRYXStackView"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Harlan Haskins" => "harlan@harlanhaskins.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/BRYXStackView.git", :tag => s.version.to_s }
+  s.author           = { "Harlan Haskins" => "harlan@bryx.com" }
+  s.source           = { :git => "https://github.com/bryx-inc/BRYXStackView.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
