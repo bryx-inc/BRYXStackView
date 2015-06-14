@@ -1,15 +1,15 @@
 // Copyright (c) 2015 Bryx, Inc. <harlan@bryx.com>
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -78,6 +78,8 @@ public class StackView: UIView {
     /// :param: updates The updates (view insertions or removals)
     /// :param: completion An optional block to call once the updates have
     ///                    finished and the constraints have been updated.
+    ///
+    /// :note: This method is safe to call inside an existing batch update.
     public func batchUpdates(updates: () -> (), completion: (() -> ())? = nil) {
         if self.isBatchingUpdates {
             // If we're already batching updates, don't modify the isBatchingUpdates
@@ -165,8 +167,40 @@ public class StackView: UIView {
         super.addSubview(view)
         view.setTranslatesAutoresizingMaskIntoConstraints(false)
         self.viewBoxes.append(ViewBox(view: view, edgeInsets: edgeInsets))
+        self.invalidateConstraints()
+    }
+    
+    /// Inserts a subview at the provided index in the stack. Also re-orders the views
+    /// in the stack such that the new order is respected.
+    ///
+    /// :param: view The view to add.
+    /// :param: index The index, vertically, where the view should live in the stack.
+    /// :param: edgeInsets: The insets to apply around the view.
+    public func insertSubview(view: UIView, atIndex index: Int, withEdgeInsets edgeInsets: UIEdgeInsets) {
+        super.insertSubview(view, atIndex: index)
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.viewBoxes.insert(ViewBox(view: view, edgeInsets: edgeInsets), atIndex: index)
+        self.invalidateConstraints()
+    }
+    
+    /// Inserts a subview at the provided index in the stack. Also re-orders the views
+    /// in the stack such that the new order is respected.
+    ///
+    /// :param: view The view to add.
+    /// :param: index The index, vertically, where the view should live in the stack.
+    public override func insertSubview(view: UIView, atIndex index: Int) {
+        self.insertSubview(view, atIndex: index, withEdgeInsets: UIEdgeInsetsZero)
+    }
+    
+    /// Removes all constraints added by the StackView and tells the
+    /// view to update the constraints if it's not currently batching requests.
+    private func invalidateConstraints() {
         self.removeConstraints(self.stackConstraints)
         self.stackConstraints.removeAll(keepCapacity: true)
+        if !self.isBatchingUpdates {
+            self.setNeedsUpdateConstraints()
+            self.updateConstraintsIfNeeded()
+        }
     }
     
     /// Adds a subview to the StackView with associated edge insets.
