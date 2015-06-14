@@ -102,6 +102,7 @@ public class StackView: UIView {
         if self.stackConstraints.isEmpty && !self.isBatchingUpdates {
             var affectedBoxes = [ViewBox]()
             for box in self.viewBoxes {
+                if box.view.hidden { continue }
                 // Horizontally constrain the new view with respect to the edge insets.
                 var views = ["view": box.view]
                 let horizontal = NSLayoutConstraint.constraintsWithVisualFormat(
@@ -194,7 +195,7 @@ public class StackView: UIView {
     
     /// Removes all constraints added by the StackView and tells the
     /// view to update the constraints if it's not currently batching requests.
-    private func invalidateConstraints() {
+    public func invalidateConstraints() {
         self.removeConstraints(self.stackConstraints)
         self.stackConstraints.removeAll(keepCapacity: true)
         if !self.isBatchingUpdates {
