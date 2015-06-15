@@ -17,12 +17,28 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 Any time you add a subview to a StackView, it's automatically re-positioned within the stack.
 
-There are four functions exposed by StackView.
+There are seven functions exposed by StackView.
 
 ```swift
+// Add a subview to the bottom of the stack.
 func addSubview(view: UIView)
+
+// Add a subview to the bottom of the stack, with padding around it.
 func addSubview(view: UIView, withEdgeInsets edgeInsets: UIEdgeInsets)
+
+// Insert a subview at some index.
+func insertSubview(view: UIView, atIndex index: Int)
+
+// Insert a subview at some index, with padding around it.
+func insertSubview(view: UIView, atIndex index: Int, withEdgeInsets: UIEdgeInsets)
+
+// Remove all subviews.
 func removeAllSubviews()
+
+// Force the stack to re-evaluate its constraints.
+func invalidateConstraints()
+
+// Run many updates, only updating constraints when all updates have finished.
 func batchUpdates(updates: () -> (), completion: (() -> ())? = nil)
 ```
 
