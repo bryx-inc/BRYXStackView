@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/BRYXStackView.svg?style=flat)](http://cocoapods.org/pods/BRYXStackView)
 [![Platform](https://img.shields.io/cocoapods/p/BRYXStackView.svg?style=flat)](http://cocoapods.org/pods/BRYXStackView)
 
+# BRYXStackView has been deprecated. Please instead use [OAStackView](https://github.com/oarrabi/OAStackView)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
