@@ -193,6 +193,33 @@ public class StackView: UIView {
         self.insertSubview(view, atIndex: index, withEdgeInsets: UIEdgeInsetsZero)
     }
     
+    /// Re-sets the edge insets associated with a view in the stack, and triggers a layout pass.
+    /// If the view is not found in the stack, this method does nothing.
+    ///
+    /// :param: insets The new insets to apply to the view.
+    /// :param: view The view to update.
+    public func setEdgeInsets(insets: UIEdgeInsets, forView view: UIView) {
+        for (index, box) in enumerate(self.viewBoxes) {
+            if box.view === view {
+                self.viewBoxes[index] = ViewBox(view: view, edgeInsets: insets)
+                self.invalidateConstraints()
+                break
+            }
+        }
+    }
+    
+    /// Adds all of the provided views to the stack with the provided edgeInsets applied to each of them.
+    ///
+    /// :param: views An Array of UIViews to be added to the stack.
+    /// :param: insets UIEdgeInsets to apply around each view.
+    public func addSubviews(views: [UIView], withEdgeInsets edgeInsets: UIEdgeInsets = UIEdgeInsetsZero, completion: (() -> ())? = nil) {
+        self.batchUpdates({
+            for view in views {
+                self.addSubview(view, withEdgeInsets: edgeInsets)
+            }
+            }, completion: completion)
+    }
+    
     /// Removes all constraints added by the StackView and tells the
     /// view to update the constraints if it's not currently batching requests.
     public func invalidateConstraints() {
